@@ -57,11 +57,6 @@ describe('ticket boxes', () => {
 
         cy.get('.success').should('contain','Ticket(s) successfully ordered.')
         cy.get('button[type="submit"]').should('be.disabled')
-
-
-
-
-
     })
 
 })
