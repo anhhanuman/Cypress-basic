@@ -67,7 +67,7 @@ describe('ticket boxes', () => {
         })
     })
 
-    it.only('submits the form with custom command', () => {
+    it('submits the form with custom command', () => {
         const customer = {
             firstName: 'Anh',
             lastName: 'Mai',
@@ -77,7 +77,7 @@ describe('ticket boxes', () => {
         cy.log(customer.fullname())
 
         cy.fillMandatoryFields(customer)
-        
+
         cy.get('button[type="submit"]').click()
         cy.get('.success').should('contain', 'Ticket(s) successfully ordered.')
 
