@@ -27,8 +27,8 @@ describe('ticket boxes', () => {
         cy.get('.reset').click()
         cy.get('.agreement fieldset').should('not.contain', `${firstName} ${lastName}`)
         cy.get('.agreement fieldset').should('contain', 'I, , wish to buy 1 General Admission ticket. I understand that all ticket sales are final.')
-        cy.get('.form-row .form-field').eq(0).find('input').should('contain','')
-        
+        cy.get('.form-row .form-field').eq(0).find('input').should('contain', '')
+
         cy.get('#first-name').type(firstName)
         cy.get('#last-name').type(lastName)
 
@@ -36,7 +36,12 @@ describe('ticket boxes', () => {
 
     })
 
-    it.only('should display the proper purchange agreement when selecting ticket quantity',()=>{
+    it.only('should display the proper purchange agreement when selecting ticket quantity', () => {
+        const numberOfTicket = '2'
+        cy.get('#ticket-quantity').select(numberOfTicket)
+        cy.get('.agreement fieldset').should('contain',`${numberOfTicket} General Admission ticket`)
+        cy.get('button[type="submit"]').should('be.disabled')
+
 
     })
 
