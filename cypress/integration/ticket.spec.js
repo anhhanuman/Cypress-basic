@@ -78,6 +78,8 @@ describe('ticket boxes', () => {
 
         cy.fillMandatoryFields(customer)
         
+        cy.get('button[type="submit"]').click()
+        cy.get('.success').should('contain', 'Ticket(s) successfully ordered.')
 
     })
 
