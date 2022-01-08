@@ -60,8 +60,10 @@ describe('ticket boxes', () => {
     })
 
     it.only('loops though the ticket quantity and assert purchase payment text', () => {
-        cy.get('#ticket-quantity').each(dropdown =>{
-            cy.wrap(dropdown).select('1')
+        cy.get('#ticket-quantity option').each(option => {
+            const optionValue = option.text()
+            cy.get('#ticket-quantity').select(optionValue)
+            cy.get('.agreement fieldset').should('contain', `${optionValue} General Admission ticket`)
         })
     })
 
