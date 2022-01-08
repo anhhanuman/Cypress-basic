@@ -59,12 +59,26 @@ describe('ticket boxes', () => {
         cy.get('button[type="submit"]').should('be.disabled')
     })
 
-    it.only('loops though the ticket quantity and assert purchase payment text', () => {
+    it('loops though the ticket quantity and assert purchase payment text', () => {
         cy.get('#ticket-quantity option').each(option => {
             const optionValue = option.text()
             cy.get('#ticket-quantity').select(optionValue)
             cy.get('.agreement fieldset').should('contain', `${optionValue} General Admission ticket`)
         })
+    })
+
+    it.only('submits the form with custom command', () => {
+        const customer = {
+            firstName: 'Anh',
+            lastName: 'Mai',
+            email: 'anhmai@example.com',
+            fullname: function() { return `${this.firstName} ${this.lastName}` }
+        }
+        cy.log(customer.fullname())
+
+        cy.fillMandatoryFields(customer)
+        
+
     })
 
 })
