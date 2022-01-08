@@ -1,4 +1,5 @@
-### How to start project with visual studio code?
+### How to start Cypress project with visual studio code from scratch?
+- Open Visual studio code for the first time
 - Press Command Shift P to open Shell 
 - Type Shell Command: Install 'code' command in PATH
 - Follow the instruction. If it's failed to install code, follow this [link](https://apple.stackexchange.com/questions/294176/how-to-install-visual-studio-codes-code-command-permanently)
