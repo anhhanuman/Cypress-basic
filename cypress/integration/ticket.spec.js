@@ -38,9 +38,28 @@ describe('ticket boxes', () => {
 
     it.only('should display the proper purchange agreement when selecting ticket quantity', () => {
         const numberOfTicket = '2'
+        const firstName = 'Anh'
+        const lastName = 'Mai'
+        const email = 'anhmai@example.com'
+        const fullName = `${firstName} ${lastName}`
+
+        cy.get('#first-name').type(firstName)
+        cy.get('#last-name').type(lastName)
+        cy.get('#email').type(email)
+        cy.get('#signature').type(fullName)
+
         cy.get('#ticket-quantity').select(numberOfTicket)
         cy.get('.agreement fieldset').should('contain',`${numberOfTicket} General Admission ticket`)
         cy.get('button[type="submit"]').should('be.disabled')
+
+        cy.contains('fieldset', 'Purchase Agreement').find('input').check()
+        cy.get('button[type="submit"]').click()
+
+        cy.get('.success').should('contain','Ticket(s) successfully ordered.')
+        cy.get('button[type="submit"]').should('be.disabled')
+
+
+
 
 
     })
