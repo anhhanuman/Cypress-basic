@@ -36,7 +36,7 @@ describe('ticket boxes', () => {
 
     })
 
-    it.only('should display the proper purchange agreement when selecting ticket quantity', () => {
+    it('should display the proper purchange agreement when selecting ticket quantity', () => {
         const numberOfTicket = '2'
         const firstName = 'Anh'
         const lastName = 'Mai'
@@ -49,14 +49,20 @@ describe('ticket boxes', () => {
         cy.get('#signature').type(fullName)
 
         cy.get('#ticket-quantity').select(numberOfTicket)
-        cy.get('.agreement fieldset').should('contain',`${numberOfTicket} General Admission ticket`)
+        cy.get('.agreement fieldset').should('contain', `${numberOfTicket} General Admission ticket`)
         cy.get('button[type="submit"]').should('be.disabled')
 
         cy.contains('fieldset', 'Purchase Agreement').find('input').check()
         cy.get('button[type="submit"]').click()
 
-        cy.get('.success').should('contain','Ticket(s) successfully ordered.')
+        cy.get('.success').should('contain', 'Ticket(s) successfully ordered.')
         cy.get('button[type="submit"]').should('be.disabled')
+    })
+
+    it.only('loops though the ticket quantity and assert purchase payment text', () => {
+        cy.get('#ticket-quantity').each(dropdown =>{
+            cy.wrap(dropdown).select('1')
+        })
     })
 
 })
